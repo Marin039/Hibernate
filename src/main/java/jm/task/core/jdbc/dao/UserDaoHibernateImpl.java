@@ -88,9 +88,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         List <User> allUsers = new ArrayList<>();
         try (Session session = getSessionFactory().openSession()) {
-            session.beginTransaction();
             allUsers = session.createQuery("from User", User.class).list();
-            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Не удалось получить данные о всех пользователях");
